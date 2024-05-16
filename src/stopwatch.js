@@ -12,11 +12,11 @@ const Stopwatch = () => {
       intervalId = setInterval(() => {
         setElapsedTime((prevTime) => prevTime + 1);
       }, 1000);
+    } else {
+      clearInterval(intervalId);
     }
 
-    return () => {
-      clearInterval(intervalId);
-    };
+    return () => clearInterval(intervalId);
   }, [isRunning]);
 
   const startStopwatch = () => {
@@ -41,7 +41,7 @@ const Stopwatch = () => {
   return (
     <div className="stopwatch">
       <h1>Stopwatch</h1>
-      <div className="time">{formatTime(elapsedTime)}</div>
+      <div className="time">Time: {formatTime(elapsedTime)}</div>
       <div className="controls">
         {!isRunning ? (
           <button onClick={startStopwatch}>Start</button>
